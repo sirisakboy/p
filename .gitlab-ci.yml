@@ -1,0 +1,17 @@
+# .gitlab-ci.yml for GitLab Pages deployment
+# This CI pipeline builds a static site and publishes it to GitLab Pages
+# It copies the contents of the 'src' directory into the 'public' folder
+# GitLab Pages will serve the files from 'public'
+
+pages:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - mkdir -p public
+    - cp -r src/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+    - master
